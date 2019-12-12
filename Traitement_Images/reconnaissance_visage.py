@@ -197,8 +197,6 @@ class EigenfacesModel ( BaseModel ):
 
 
 # main
-path_base="E:\\COURS\\PROJ 942\\Partie_1_Python\\Proj942\\Traitement_Images\\Base_visages"
-path_image_test='claire.jpg'
 def reconnaissance_visage(path_base,path_image_test):
     [X,y] = read_images (path_base)
     
@@ -211,9 +209,6 @@ def reconnaissance_visage(path_base,path_image_test):
     # reading an image
     im_orig = cv2.imread(path_image_test)
     height, width, depth = im_orig.shape
-    #print(height, width, depth)
-    #cv2.imshow('original',im_orig)
-    #cv2.waitKey(0)
     
     # parametres du cadre défini sur la tablette
     left=int(0.16*width)
@@ -226,10 +221,8 @@ def reconnaissance_visage(path_base,path_image_test):
     imtest=im.crop((left,top,right,bottom))
     imtest=imtest.resize((92,112))
     imtest = imtest.convert ("L")
-    #imtest.save("image_test_resized.jpg")
     test = np.asarray (imtest , dtype =np.uint8 )
-    #cv2.imshow(path_image,test)
-    #cv2.waitKey(0)
+    
     # model computation
     model = EigenfacesModel (X , y)
     qui= model.predict(test)+1
