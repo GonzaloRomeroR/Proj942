@@ -9,7 +9,6 @@ public class Client{
 
 
    private static String encodeFileToBase64Binary(File file){
-    // Transformer le fichier a base64
         String encodedfile = null;
         try {
             FileInputStream fileInputStreamReader = new FileInputStream(file);
@@ -30,26 +29,23 @@ public class Client{
 
     try{
 
-      // Definir l'adresse du serveur
+      // 
       String url = "http://10.7.177.93:4000";
       String charset = "UTF-8";
-      // Trouver l'image
       File image = new File("imagen.jpeg");
-      // Encode base64
       String encodedstring = encodeFileToBase64Binary(image);
-      // Ouvrir connection
+      
       URLConnection connection = new URL(url).openConnection();
       connection.setDoOutput(true);
       
       OutputStream output = connection.getOutputStream();
-
-      // Creer objet pour l'ecriture
       PrintWriter writer = new PrintWriter(new OutputStreamWriter(output, charset), true);
       
       writer.append(encodedstring);
       
       output.flush(); 
 
+      //TimeUnit.SECONDS.sleep(1);
       try{
         int responseCode = ((HttpURLConnection) connection).getResponseCode();
         System.out.println(responseCode);
