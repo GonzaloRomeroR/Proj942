@@ -32,8 +32,9 @@ public class Client{
       // 
       String url = "http://10.7.177.93:4000";
       String charset = "UTF-8";
-      File image = new File("imagen.jpeg");
+      File image = new File("hugo.jpg");
       String encodedstring = encodeFileToBase64Binary(image);
+      //System.out.print(encodedstring);
       
       URLConnection connection = new URL(url).openConnection();
       connection.setDoOutput(true);
@@ -41,10 +42,12 @@ public class Client{
       OutputStream output = connection.getOutputStream();
       PrintWriter writer = new PrintWriter(new OutputStreamWriter(output, charset), true);
       
+      System.out.println(encodedstring.length());
+
       writer.append(encodedstring);
       
       output.flush(); 
-
+      writer.flush();
       //TimeUnit.SECONDS.sleep(1);
       try{
         int responseCode = ((HttpURLConnection) connection).getResponseCode();

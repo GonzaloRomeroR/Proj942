@@ -36,7 +36,8 @@ def read_images (path , sz= None ):
                     X.append (np.asarray (im , dtype =np.uint8 ))
                     y.append (c)
                 except IOError :
-                    print("I/O error ({0}) : {1} ".format(errno , strerror ))
+                    #print("I/O error ({0}) : {1} ".format(errno , strerror ))
+                    pass
                 except :
                     print(" Unexpected error :", sys.exc_info() [0])
                     raise
@@ -59,8 +60,12 @@ def asColumnMatrix (X):
         mat = np.hstack (( mat , np.asarray ( col ).reshape( -1 ,1)))
     return mat  
     
-def pca(X, y, num_components =0):
+def pca(X, y, num_components = 0):
+    #print(X.shape)
     [n,d] = X.shape
+
+    #n = X.shape[0]
+    #d = X.shape[1]
     if ( num_components <= 0) or ( num_components > n):
         num_components = n
     mu = X.mean ( axis =0)

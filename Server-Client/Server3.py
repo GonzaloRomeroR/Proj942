@@ -6,7 +6,7 @@ import base64
 
 
 path_base="./Base_visages"
-path_image_test='hugo.jpg'
+path_image_test='hugo.jpeg'
 
 HOST_NAME = '10.7.177.93'
 PORT_NUMBER = 4000
